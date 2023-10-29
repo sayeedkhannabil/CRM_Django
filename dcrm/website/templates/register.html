@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+<!-- Extend the 'base.html' template to inherit its structure and styles. -->
+
+{% block content %}
+<!-- Start defining the content block within the extended template. -->
+
+<div class="col-md-6 offset-md-3">
+    <!-- Create a Bootstrap column with a specified width and offset for centering content. -->
+    <h1>Register</h1>
+    <!-- Display a heading indicating the registration page. -->
+    </br>
+    <!-- Add a line break for spacing. -->
+    <form method="POST" action="">
+        <!-- Create a form element with a POST method for user registration. -->
+        {% csrf_token %}
+        <!-- Include a CSRF token for security. -->
+
+        {% if form.errors %}
+        <!-- Check if there are form errors. Display a message if errors exist. -->
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			  Your Form Has Errors
+			  <!-- Show a warning message for form errors. -->
+			  {% for field in form %}
+			  	{% if field.errors %}
+			  		{{ field.errors }}
+			  		<!-- Display specific field errors if they exist. -->
+			  	{% endif %}
+			  {% endfor %}
+			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			  <!-- Include a close button for the alert. -->
+			</div>
+		{% endif %}
+        
+        {{ form.as_p }}
+        <!-- Render the form fields in paragraphs. -->
+        </br>
+        <!-- Add a line break for spacing. -->
+        <button type="submit" class="btn btn-secondary">Register</button>
+        <!-- Create a submit button for user registration. -->
+    </form>
+</div>
+
+{% endblock %}
+<!-- End of the content block. -->
