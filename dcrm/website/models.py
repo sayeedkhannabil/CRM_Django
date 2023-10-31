@@ -13,3 +13,22 @@ class Record(models.Model):
 
     def __str__(self):
         return(f"{self.first_name} {self.last_name}")
+
+class Case(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    STATUS_CHOICES = [
+        ('active', 'Active'),
+        ('pending', 'Pending'),
+        ('in_progress', 'In Progress'),
+        ('completed', 'Completed'),
+    ]
+    pdf_file = models.FileField(upload_to='cases/pdfs/')
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='pending',
+    )
+
+    def __str__(self):
+        return f"Case {self.id} - Status: {self.get_status_display()}"
+
