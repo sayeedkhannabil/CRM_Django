@@ -24,6 +24,44 @@ def home(request):
 
     return render(request, 'home.html',{'records': records, 'cases': cases})
 
+def record(request):
+    records = Record.objects.all()
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        # Authenticate Person
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            # Login Person
+            login(request, user)
+            messages.success(request, ('You have been logged in!'))
+            return redirect('home')
+        else:
+            messages.success(request, ('Error Logging In - Please Try Again...'))
+            return redirect('home')
+
+    return render(request, 'showRecord.html', {'records': records})
+
+def case(request):
+    cases = Case.objects.all()
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        # Authenticate Person
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            # Login Person
+            login(request, user)
+            messages.success(request, ('You have been logged in!'))
+            return redirect('home')
+        else:
+            messages.success(request, ('Error Logging In - Please Try Again...'))
+            return redirect('home')
+
+    return render(request, 'showCase.html', {'cases': cases})
+
 def logout_user(request):
     logout(request)
     messages.success(request, ('You have been logged out!'))
