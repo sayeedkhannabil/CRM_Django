@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card">
+  <div class="card-header"><strong>
+    	Case {{ customer_case.id }} - Status: {{ customer_case.get_status_display }}
+  </div>
+  <div class="card-body">
+
+<p class="card-text">
+<strong>Created At: </strong>{{ customer_case.created_at }}</p>
+
+<p class="card-text">
+<strong>Status: </strong>{{ customer_case.get_status_display }}</p>  <!-- Using the get_status_display method -->
+
+<p class="card-text">
+<strong>PDF File: </strong><a href="{{ customer_case.pdf_file.url }}" download>Download</a></p> <!-- Providing a download link for the file -->
+
+<p class="card-text">
+<strong>ID: </strong>{{ customer_case.id }}</p>
+    
+  </div>
+</div>
+
+<br/><br/>
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+<a href="{% url 'delete_case' customer_case.id %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'update_case' customer_case.id %}" class="btn btn-secondary">Update Case</a>
+
+{% endblock %}
+
