@@ -2,7 +2,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Record
+from .models import Record, Case
 
 # Define a custom user registration form that inherits from UserCreationForm.
 class SignupForm(UserCreationForm):
@@ -50,3 +50,14 @@ class AddRecordForm(forms.ModelForm):
     class Meta:
         model = Record
         exclude = ("user",)
+
+
+# CREATE ADD CASE FORM
+class AddCaseForm(forms.ModelForm):
+    status = forms.ChoiceField(choices=Case.STATUS_CHOICES, widget=forms.Select(attrs={"class": "form-control"}), initial='pending', label="Status")
+    pdf_file = forms.FileField(label='', widget=forms.ClearableFileInput(attrs={"class": "form-control-file"}))
+    
+    class Meta:
+        model = Case
+        fields = ('status', 'pdf_file')
+

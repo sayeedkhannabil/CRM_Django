@@ -12,5 +12,9 @@ urlpatterns = [
     path('delete_record/<int:pk>', views.delete_record, name='delete_record'),
     path('add_record/', views.add_record, name='add_record'),
     path('update_record/<int:pk>', views.update_record, name='update_record'),
+    path('case/<int:pk>', views.customer_case, name='case'),
+    path('delete_case/<int:pk>', views.delete_case, name='delete_case'),
+    path('add_case/', views.add_case, name='add_case'),
+    path('update_case/<int:pk>', views.update_case, name='update_case'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
