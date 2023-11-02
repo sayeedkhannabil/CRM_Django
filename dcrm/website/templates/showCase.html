@@ -20,8 +20,6 @@
     <table class="table table-striped table-hover table-bordered">
         <thead class="table-dark">
             <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
             <th scope="col">Case File</th>
             <th scope="col">Created At</th>
             <th scope="col">ID</th>
@@ -31,9 +29,8 @@
         {% if cases %}
             {% for case in cases %}
                 <tr>
-                    <td>{{ case.title }}</td>
-                    <td>{{ case.description }}</td>
-                    <td><a href="{{ case.case_file.url }}" target="_blank">Download</a></td> <!-- Assuming you have set up media files correctly -->
+                    
+                    <td><a href="{{ case.case_file.url }}" download="{{ case.case_file.name }}">Download</a></td> <!-- Assuming you have set up media files correctly -->
                     <td>{{ case.created_at }}</td>
                     <td><a href="{% url 'case' case.id %}"> {{ case.id }} </a></td>
                 </tr>

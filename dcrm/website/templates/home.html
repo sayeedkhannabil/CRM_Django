@@ -2,7 +2,83 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <h1> Logged In </h1>
+<h2><span class="text-black mt-4 d-sm-flex justify-content-center">Forms</span></h2>
+
+<!--Display projects-->
+<!--Using bootsrap grid-->
+
+<!--Form 1-->
+<section id="learn" class="p-5 bg-white text-dark">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-md p-5">
+                <h2 class="text-dark">Record</h2>
+                <p class="lead">
+                    Developed a <span class="lead text-danger"> form </span> to help AP Clerks to add/modify
+                    vendors.
+                </p>
+                <p>
+                <ul>
+                    <li>Write what stakeholder 1 does.</li>
+                    <li>Write what stakeholder 2 does.</li>
+                    <li>Instructions would be really good.</li>
+                </ul>
+                </p>
+                <a href="{% url 'showRecord' %}" target="_blank" class="btn btn-outline-dark mt-3">
+                    View Records
+                </a>
+            </div>
+            <!--add image here-->
+            <div class="col-md">
+                <img src="../images/Project_images/personal_website.png" class="img-fluid" alt="" />
+            </div>
+        </div>
+    </div>
+</section>
+<!--Form 1 ends-->
+
+<div style="width:800px; margin:0 auto;">
+    <hr class="text-secondary" width="100%">
+</div>
+
+<!--Form 2-->
+<section id="learn" class="p-3 bg-white text-dark">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-md">
+                <img src="../images/Project_images/Game-Rating.png" class="img-fluid" alt="" />
+            </div>
+            <div class="col-md p-5">
+                <h2 class="text-dark">Case</h2>
+                <p class="lead">
+                    Developed a <span class="lead text-danger"> form </span> to help AP Clerks to add/modify
+                    vendors.
+                </p>
+                <p>
+                <ul>
+                    <li>Write what stakeholder 1 does.</li>
+                    <li>Write what stakeholder 2 does.</li>
+                    <li>Instructions would be really good.</li>
+                </ul>
+                </p>
+                <a href="{% url 'showCase' %}" target="_blank" class="btn btn-outline-dark mt-3">
+                    View Cases
+                </a>
+            </div>
+        </div>
+        <!--Region of Table-->
+
+    </div>
+</section>
+<!--Form 2 ends-->
+
+<div style="width:800px; margin:0 auto;">
+    <hr class="text-secondary" width="100%">
+</div>
+
+
+<!--Form 3 ends-->
+
 
 
 {% else %}

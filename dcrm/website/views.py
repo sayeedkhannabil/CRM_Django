@@ -99,7 +99,7 @@ def delete_record(request, pk):
         delete_it = Record.objects.get(id=pk)
         delete_it.delete()
         messages.success(request, ('User Record Has Been Deleted!'))
-        return redirect('home')
+        return redirect('showRecord')
     
     else:
         messages.success(request, ('Please log in to delete user records.'))
@@ -112,7 +112,7 @@ def add_record(request):
             if form.is_valid():
                 add_record = form.save()
                 messages.success(request, ('Record Has Been Added!'))
-                return redirect('home')
+                return redirect('showRecord')
         return render(request, 'add_record.html', {'form':form})
     else:
         messages.success(request, ('Please log in to add user records.'))
@@ -126,7 +126,7 @@ def update_record(request, pk):
 		if form.is_valid():
 			form.save()
 			messages.success(request, "Record Has Been Updated!")
-			return redirect('home')
+			return redirect('showRecord')
 		return render(request, 'update_record.html', {'form':form})
 	else:
 		messages.success(request, "You Must Be Logged In...")
@@ -147,7 +147,7 @@ def delete_case(request, pk):
         delete_it = Case.objects.get(id=pk)
         delete_it.delete()
         messages.success(request, ('User Case Has Been Deleted!'))
-        return redirect('home')
+        return redirect('showCase')
     
     else:
         messages.success(request, ('Please log in to delete user cases.'))
@@ -160,7 +160,7 @@ def add_case(request):
             if form.is_valid():
                 add_case = form.save()
                 messages.success(request, ('Case Has Been Added!'))
-                return redirect('home')
+                return redirect('showCase')
         return render(request, 'add_case.html', {'form':form})
     else:
         messages.success(request, ('Please log in to add user cases.'))
@@ -170,11 +170,11 @@ def add_case(request):
 def update_case(request, pk):
     if request.user.is_authenticated:
         current_case = Case.objects.get(id=pk)
-        form = AddCaseForm(request.POST, request.FILES or None, instance=current_case)
+        form = AddCaseForm(request.POST or None, request.FILES or None, instance=current_case)
         if form.is_valid():
-            form.save()
+            form.save(commit=True)
             messages.success(request, "Case Has Been Updated!")
-            return redirect('home')
+            return redirect('showCase')
         return render(request, 'update_case.html', {'form':form})
     else:
         messages.success(request, "You Must Be Logged In...")
